@@ -1,8 +1,9 @@
 public abstract class Animal {
     public String name;
-    public int age;
+    public String age;
     public String species;
     public String health;
+    public int id;
 
     //Method to get Name of Animal
     public String getName() {
@@ -10,7 +11,7 @@ public abstract class Animal {
     }
 
     //Method to get Age of Animal
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
