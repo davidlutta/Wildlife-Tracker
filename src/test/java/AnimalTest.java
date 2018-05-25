@@ -14,4 +14,18 @@ public class AnimalTest{
         RegAnimal myAnimal = new RegAnimal("panther","matrue");
         assertEquals(true, myAnimal instanceof RegAnimal);
     }
+
+    //test to see if animal instantiates with a name
+    @Test
+    public void animal_InstantiatesWithName_panther(){
+        RegAnimal myAnimal = new RegAnimal("panther","mature");
+        assertEquals("panther", myAnimal.getName());
+    }
+
+    // test to see if animal instantiates with an age
+    @Test
+    public void animal_InstantiatesWithAge_mature(){
+        RegAnimal myAnimal = new RegAnimal("panther","mature");
+        assertEquals("mature", myAnimal.getAge());
+    }
 }

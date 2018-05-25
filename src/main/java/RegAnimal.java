@@ -8,7 +8,11 @@ public class RegAnimal extends Animal{
         if (name.equals("")) {
             throw new IllegalArgumentException("Please enter a name");
         }
+        if (age.equals("")) {
+            throw new IllegalArgumentException("Please enter the age of the animal");
+        }
         this.name = name;
+        this.age = age;
         species = ANIMAL_SPECIES;
     }
 
