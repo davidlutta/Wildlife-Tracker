@@ -1,3 +1,5 @@
+import org.sql2o.*;
+
 public abstract class Animal {
     public String name;
     public String age;
@@ -26,4 +28,21 @@ public abstract class Animal {
     }
 
     //Method for saving
+    public void save(){
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "INSERT INTO animal (name, age, health, species) VALUES (:name, :age, :health, :species);";
+            this.id = (int) con.createQuery(sql, true)
+                    .addParameter("name", this.name)
+                    .addParameter("age", this.age)
+                    .addParameter("health", this.health)
+                    .addParameter("species", this.species)
+                    .executeUpdate()
+                    .getKey();
+        }
+    }
+
+    //Method to get Id
+    public int getId() {
+        return id;
+    }
 }

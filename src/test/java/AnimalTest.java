@@ -34,4 +34,11 @@ public class AnimalTest{
         RegAnimal myAnimal = new RegAnimal("","","");
     }
 
+    //test to check if info is saved into database
+    @Test
+    public void animal_IsSavedInDatabase(){
+        RegAnimal myAnimal = new RegAnimal("panther", "adult", "health");
+        myAnimal.save();
+        assertTrue(RegAnimal.all().get(0).equals(testAnimal));
+    }
 }
