@@ -24,4 +24,6 @@ public abstract class Animal {
     public String getSpecies() {
         return species;
     }
+
+    //Method for saving
 }
