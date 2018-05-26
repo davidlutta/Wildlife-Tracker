@@ -5,8 +5,8 @@ import java.util.List;
 public abstract class Animal {
     public String name;
     public String age;
-    public String species;
     public String health;
+    public String species;
     public int id;
 
     //Method to get Name of Animal
@@ -38,6 +38,7 @@ public abstract class Animal {
                     .addParameter("age", this.age)
                     .addParameter("health", this.health)
                     .addParameter("species", this.species)
+                    .throwOnMappingFailure(false)
                     .executeUpdate()
                     .getKey();
         }
@@ -49,12 +50,7 @@ public abstract class Animal {
     }
 
 
-    //Method to get all species of animals
-    public List<Animal> all(String species){
-        String sql = "SELECT * FROM animal WHERE species = '' ;";
-        try(Connection con = DB.sql2o.open()) {
-            return con.createQuery(sql).executeAndFetch(Animal.class);
-        }
-        }
     }
+
+
 

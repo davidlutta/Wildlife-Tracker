@@ -7,7 +7,7 @@ public class DatabaseRule extends ExternalResource {
     //Making a connection to our test database before running our tests
     @Override
     public void before(){
-        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker", null, null);
+        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker_test", null, null);
     }
 
     //Clearing our database after running all our tests
