@@ -1,6 +1,5 @@
 import org.sql2o.*;
 
-import java.util.List;
 
 public abstract class Animal {
     public String name;
@@ -29,6 +28,21 @@ public abstract class Animal {
         return species;
     }
 
+
+    @Override
+    public boolean equals(Object otherAnimal){
+        if(!(otherAnimal instanceof Object)){
+            return false;
+        }
+        Animal myAnimal = (Animal) otherAnimal;
+        return this.getName().equals(myAnimal.getName())&&
+                this.getSpecies().equals(myAnimal.getSpecies())&&
+                this.getId()==myAnimal.getId()&&
+                this.getAge()==myAnimal.getAge()&&
+                this.getHealth().equals(myAnimal.getHealth());
+    }
+
+
     //Method for saving
     public void save(){
         try(Connection con = DB.sql2o.open()) {
@@ -49,6 +63,17 @@ public abstract class Animal {
         return id;
     }
 
+
+    //Method to Find Id
+    public static Animal find(int id){
+        String sql = "SELECT * FROM animal WHERE id = :id;";
+        try(Connection con = DB.sql2o.open()){
+            Animal myAnimal = con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Animal.class);
+            return myAnimal;
+        }
+    }
 
     }
 

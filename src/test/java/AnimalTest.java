@@ -52,4 +52,22 @@ public class AnimalTest{
         assertTrue(RegAnimal.all().get(0).equals(myAnimal1));
         assertTrue(RegAnimal.all().get(1).equals(myAnimal2));
     }
+
+    //Animal is assigined an Id
+    @Test
+    public void animal_AnimalIsAssingnedAnID_getid(){
+        RegAnimal myAnimal = new RegAnimal("puma","young","healthy","safe");
+        myAnimal.save();
+        RegAnimal testAnimalia = RegAnimal.all().get(0);
+        assertEquals(myAnimal.getId(), testAnimalia.getId());
+    }
+
+    //Test to find Animal with the Same Id
+    public void find_WillReturnAnimalWithTheSame_SecondAnimal(){
+        RegAnimal firstAnimal = new RegAnimal("panther","mature","healthy","safe");
+        firstAnimal.save();
+        RegAnimal secondAnimal = new RegAnimal("puma","young","healthy","safe");
+        secondAnimal.save();
+        assertEquals(RegAnimal.find(secondAnimal.getId()), secondAnimal);
+    }
 }
