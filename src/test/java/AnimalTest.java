@@ -49,9 +49,9 @@ public class AnimalTest{
         myAnimal1.save();
         RegAnimal myAnimal2 = new RegAnimal("puma","mature","healthy","safe");
         myAnimal2.save();
-        assertTrue(RegAnimal.all().get(0).equals(myAnimal1));
-        assertTrue(RegAnimal.all().get(1).equals(myAnimal2));
-    }
+    assertTrue(RegAnimal.all().get(0).equals(myAnimal1));
+    assertTrue(RegAnimal.all().get(1).equals(myAnimal2));
+}
 
     //Animal is assigined an Id
     @Test
