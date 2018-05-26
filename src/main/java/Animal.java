@@ -1,5 +1,7 @@
 import org.sql2o.*;
 
+import java.util.List;
+
 public abstract class Animal {
     public String name;
     public String age;
@@ -45,4 +47,14 @@ public abstract class Animal {
     public int getId() {
         return id;
     }
-}
+
+
+    //Method to get all species of animals
+    public List<Animal> all(String species){
+        String sql = "SELECT * FROM animal WHERE species = '' ;";
+        try(Connection con = DB.sql2o.open()) {
+            return con.createQuery(sql).executeAndFetch(Animal.class);
+        }
+        }
+    }
+

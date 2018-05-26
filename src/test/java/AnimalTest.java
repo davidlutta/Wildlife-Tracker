@@ -39,6 +39,6 @@ public class AnimalTest{
     public void animal_IsSavedInDatabase(){
         RegAnimal myAnimal = new RegAnimal("panther", "adult", "health");
         myAnimal.save();
-        assertTrue(RegAnimal.all().get(0).equals(testAnimal));
+        assertTrue(RegAnimal.all().get(1).equals(myAnimal));
     }
 }

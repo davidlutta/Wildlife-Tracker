@@ -1,3 +1,7 @@
+import org.sql2o.Connection;
+
+import java.util.List;
+
 public class RegAnimal extends Animal{
 
     //Setting a constant for the safe animals
@@ -20,6 +24,10 @@ public class RegAnimal extends Animal{
         this.health = health;
         species = ANIMAL_SPECIES;
     }
+
+
+
+
 
 
 
