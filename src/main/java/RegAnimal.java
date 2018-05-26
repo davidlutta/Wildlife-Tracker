@@ -52,8 +52,6 @@ public class RegAnimal extends Animal{
                 this.getId()==myAnimal.getId() ;
 
     }
-
-
     //Method to get all species of animals
     public static List<RegAnimal> all(){
         String sql = "SELECT * FROM animal WHERE species='safe'";

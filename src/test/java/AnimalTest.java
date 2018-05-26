@@ -41,4 +41,15 @@ public class AnimalTest{
         myAnimal.save();
         assertTrue(RegAnimal.all().get(0).equals(myAnimal));
     }
+
+    //Test to check if all instances of regular animals are made
+    @Test
+    public void animal_AllInstancesOfAnimalAreReturned_True(){
+        RegAnimal myAnimal1 = new RegAnimal("panther", "young","healthy","safe");
+        myAnimal1.save();
+        RegAnimal myAnimal2 = new RegAnimal("puma","mature","healthy","safe");
+        myAnimal2.save();
+        assertTrue(RegAnimal.all().get(0).equals(myAnimal1));
+        assertTrue(RegAnimal.all().get(1).equals(myAnimal2));
+    }
 }
