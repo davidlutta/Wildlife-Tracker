@@ -22,12 +22,21 @@ public class SightingTest {
         assertTrue(Sighting.all().get(0).equals(newSighting));
     }
 
-    //Sighting is assigined an Id
+    //Sighting is assigined an Id 
     @Test
     public void sighting_EachSigthingIsAssignedAnId_getid(){
         Sighting newSighting = new Sighting("Roger","Zone 2",1,"endangered");
         newSighting.save();
         Sighting testSighting = Sighting.all().get(0);
         assertEquals(newSighting.getId(), testSighting.getId());
+    }
+
+    //Testing the find Id method
+    public void find_WillReturnSightingWithTheSameID_SecnondSighting(){
+        Sighting firstSighting = new Sighting("Roger","Zone 2",1,"endangered");
+        firstSighting.save();
+        Sighting SecondSighting = new Sighting("Chris","Zone 5",3,"safe");
+        SecondSighting.save();
+        assertEquals(RegAnimal.find(SecondSighting.getId()), SecondSighting);
     }
 }
