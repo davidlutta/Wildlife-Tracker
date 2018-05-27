@@ -21,4 +21,13 @@ public class SightingTest {
         newSighting.save();
         assertTrue(Sighting.all().get(0).equals(newSighting));
     }
+
+    //Sighting is assigined an Id
+    @Test
+    public void sighting_EachSigthingIsAssignedAnId_getid(){
+        Sighting newSighting = new Sighting("Roger","Zone 2",1,"endangered");
+        newSighting.save();
+        Sighting testSighting = Sighting.all().get(0);
+        assertEquals(newSighting.getId(), testSighting.getId());
+    }
 }

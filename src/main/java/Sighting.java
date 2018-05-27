@@ -1,12 +1,9 @@
 import org.sql2o.Connection;
-
-import java.sql.Timestamp;
 import java.util.List;
 
 public class Sighting {
     private String name;
     private String location;
-    private Timestamp timestamp;
     private int animalId;
     private String species;
     private int id;
@@ -34,10 +31,6 @@ public class Sighting {
     public String getName() {
         return name;
     }
-    //Get Method for TimeStamp of Sighting
-    public String getTime() {
-        return String.format("%1$TD %1$TR", timestamp);
-    }
     //Get Method for Location of the Sighted Animal
     public String getLocation() {
         return location;
@@ -63,11 +56,21 @@ public class Sighting {
                     .getKey();
         }
     }
-    //Method to Get All Sightings in Order of timestamp
+    //Method to Get All Sightings
     public static List<Sighting> all(){
         String sql = "SELECT * FROM sighting;";
         try(Connection con = DB.sql2o.open()) {
             return con.createQuery(sql).executeAndFetch(Sighting.class);
+        }
+    }
+    //Method for finding
+    public static Sighting find(int id){
+        String sql = "SELECT * FROM sighting WHERE id = :id";
+        try(Connection con = DB.sql2o.open()) {
+            Sighting sighting = con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Sighting.class);
+            return sighting;
         }
     }
     //Overriding method
@@ -81,5 +84,6 @@ public class Sighting {
                 this.getLocation().equals(myAnimal.getLocation())&&
                 this.getId()==myAnimal.getId() ;
     }
+
 }
 
