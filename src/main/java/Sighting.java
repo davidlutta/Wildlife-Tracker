@@ -1,7 +1,7 @@
 import org.sql2o.Connection;
 import java.util.List;
 
-public class Sighting {
+public class Sighting implements DataBaseManagement{
     private String name;
     private String location;
     private int animalId;
@@ -73,7 +73,7 @@ public class Sighting {
             return sighting;
         }
     }
-    //Overriding method
+    //Overriding Equals method and satisfying Interface
     @Override
     public boolean equals(Object otherSighting){
         if(!(otherSighting instanceof Object)){
@@ -85,5 +85,15 @@ public class Sighting {
                 this.getId()==myAnimal.getId() ;
     }
 
+    //Method for deleting sightings and also satisfying Interface
+    @Override
+    public void delete() {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "DELETE FROM sighting WHERE id = :id";
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
 }
 
