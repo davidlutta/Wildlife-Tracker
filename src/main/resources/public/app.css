@@ -121,3 +121,7 @@ button:active {
 button:hover{
   cursor:pointer;
 }
+table{
+    color: white;
+    border-radius:6px;
+}
