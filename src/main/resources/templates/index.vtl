@@ -1,0 +1,46 @@
+<h1 class="header">WILDLIFE TRACKER</h1>
+<br>
+<br>
+<br>
+
+<div class="row">
+    <div class="col-6">
+            <form action="/sighting" method="post">
+                <h2>Animal Sighting</h2>
+                <div class="form-group">
+                    <label for="rangerName">Ranger's Name</label>
+                    <input type="text" id="rangerName" name="rangerName">
+                </div>
+                <hr>
+                <p>Ranger's Location</p>
+                <select name="sightingLocation" id="sightingLocation">
+                    <option value="Zone1">Zone 1</option>
+                    <option value="Zone2">Zone 2</option>
+                    <option value="Zone3">Zone 3</option>
+                    <option value="Zone4">Zone 4</option>
+                    <option value="Zone5">Zone 5</option>
+                </select>
+                <hr>
+                <div class="form-group">
+                    <label for="animalName">Animal Name</label>
+                    <input type="text" id="animalName" name="animalName">
+                </div>
+                <select name="animalAge" id="animalAge">
+                    <option value="young">Young</option>
+                    <option value="adult">Adult</option>
+                    <option value="mature">Mature</option>
+                </select>
+                <select name="animalHealth" id="animalHealth">
+                    <option value="weak">Weak</option>
+                    <option value="healthy">Healthy</option>
+                </select>
+                <select name="animalSpecies" id="animalSpecies">
+                    <option value="safe">Safe</option>
+                    <option value="endangered">Endangered</option>
+                </select>
+                <button type="submit">Submit</button>
+            </form>
+    </div>
+</div>
+
+

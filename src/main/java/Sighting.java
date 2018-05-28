@@ -1,14 +1,15 @@
 import org.sql2o.Connection;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Sighting implements DataBaseManagement{
     private String name;
     private String location;
     private int animalId;
-    private String species;
+    private Timestamp timestamp;
     private int id;
 
-    public Sighting(String name, String location, int animalId, String species) {
+    public Sighting(String name, String location, int animalId) {
         //Exception for name
         if (name.equals("")) {
             throw new IllegalArgumentException("Please enter a name mate");
@@ -17,14 +18,9 @@ public class Sighting implements DataBaseManagement{
         if (location.equals("")) {
             throw new IllegalArgumentException("Please enter a location mate");
         }
-        //Exception for species
-        if (species.equals("")) {
-            throw new IllegalArgumentException("Please enter the species of the animal");
-        }
         this.name = name;
         this.location = location;
         this.animalId = animalId;
-        this.species = species;
     }
 
     //Get Method for Ranger's Name
@@ -35,23 +31,32 @@ public class Sighting implements DataBaseManagement{
     public String getLocation() {
         return location;
     }
-    //Get Method for species of Animal Sighted
-    public String getSpecies() {
-        return species;
-    }
     //Get Method for the Sighting Id
     public int getId() {
         return id;
     }
+    //Get Method for TimeStamp
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+    //Get Method to get Animal object
+    public Animal getAnimal() {
+        String sql = "SELECT * FROM animal WHERE id = :id";
+        try(Connection con = DB.sql2o.open()){
+            Animal myAnimal = con.createQuery(sql)
+                    .addParameter("id",this.animalId)
+                    .executeAndFetchFirst(Animal.class);
+            return myAnimal;
+        }
+    }
     //Method to save Sightings
     public void save() {
         try (Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO sighting (name, location, animalId, species) VALUES (:name, :location, :animalId, :species);";
+            String sql = "INSERT INTO sighting (name, location, animalId, timestamp) VALUES (:name, :location, :animalId, now());";
             this.id = (int) con.createQuery(sql, true)
                     .addParameter("name", this.name)
                     .addParameter("location", this.location)
                     .addParameter("animalId", this.animalId)
-                    .addParameter("species", this.species)
                     .executeUpdate()
                     .getKey();
         }

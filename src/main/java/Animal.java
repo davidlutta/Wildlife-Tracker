@@ -1,12 +1,12 @@
 import org.sql2o.*;
 
 
-public abstract class Animal {
-    public String name;
-    public String age;
-    public String health;
-    public String species;
-    public int id;
+public class Animal {
+    protected String name;
+    protected String age;
+    protected String health;
+    protected String species;
+    protected int id;
 
     //Method to get Name of Animal
     public String getName() {
